@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'dungeon';
+  src: url('./assets/DUNGRG__.TTF');
+}
+*{box-sizing: border-box;}
+body{background:darkgray;
+  font-family: 'dungeon','Times New Roman', Times, serif;
+  cursor: url('./assets/BaldursGate.cur'), progress;
+  width: 99vw;
+  height: 95vh;
+  
+}
+#gameScreen{
+  width: 99vw;
+  height: 95vh;
+  margin: auto;
+  display: grid;
+  grid-template: 4fr 6fr/1fr 6fr;
+  border: 5px solid black
+}
+.title{
+  margin: auto;
+}
+.card{
+  border: 5px solid black;
+  display: grid;
+  grid-template-rows: 20% 80%;
+}
+#stats{
+  display: flex;
+  flex-flow: row wrap  ;
+  justify-content: space-evenly;
+  background-color: aqua;
+  height:100%;
+}
+#A{
+  display: flex;
+  flex-flow: column nowrap;
+  height:100%;
+  background-color: aquamarine;
+}
+#B{border: 5px solid black;
+  height:100%;
+  background-color: royalblue;}
+#C{border: 5px solid black;
+  height:100%;
+  background-color: purple;}
+
+.storeButt[data-title]:hover::after {
+  content: attr(data-title);
+  font-size: small;
+  color: white;
+  font-weight: 600;
+  position: absolute;
+  background-color: rgba(00,00,00,1);
+  z-index: 1;
+  border: red ridge 3px;
+  margin: auto;
+}
