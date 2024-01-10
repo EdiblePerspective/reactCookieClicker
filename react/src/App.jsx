@@ -24,7 +24,6 @@ function App() {
   const [pArmour, setPArmour] = useState(0)
   const [mRings, setMRings] = useState(0)
   const [bombs, setBombs] = useState(0)
-  function (){setGold((gold) => gold + (1000000))}
   return (
     <>
     <div id="gameScreen">
@@ -79,13 +78,23 @@ function App() {
           & setSwords((swords) => swords + (1)): null}}>
           Sword [100GP]</button>
         <button className="storeButt" data-title="Restore 25%HP" onClick={() => {gold>=250 ?
-          setplayerCurrentHP((playerCurrentHP) => playerCurrentHP + (0.25*playerMaxHP)) 
+          ((playerCurrentHP+(0.25*playerMaxHP)>(playerMaxHP)) 
+          ? setplayerCurrentHP((playerCurrentHP) => playerCurrentHP = playerMaxHP) 
+          :setplayerCurrentHP((playerCurrentHP) => playerCurrentHP + (0.25*playerMaxHP))) 
           & setGold((gold) => gold - (250))
           & setHPots((hPots) => hPots + (1)): null}}>
           Health Potion [250GP]</button>
-        <button className="storeButt" data-title="+50GP/click +100Dmg">
+        <button className="storeButt" data-title="+50GP/click +100Dmg" onClick={() => {gold>=500 ?
+          setDmg((Dmg) => Dmg + (100)) 
+          & setGoldPerClick((goldPerClick) => goldPerClick + (50)) 
+          & setGold((gold) => gold - (500))
+          & setWands((wands) => wands + (1)): null}}>
           Wand of Fireballs [500GP]</button>
-        <button className="storeButt" data-title="+50GP/s +250Dmg">
+        <button className="storeButt" data-title="+50GP/s +250Dmg" onClick={() => {gold>=1000 ?
+          setDmg((Dmg) => Dmg + (250)) 
+          & setGoldPerSec((goldPerSec) => goldPerSec + (50)) 
+          & setGold((gold) => gold - (1000))
+          & setAxes((axes) => axes + (1)): null}}>
           Shiny Axe [1,000GP]</button>
         <button className="storeButt" data-title="+10,000 MaxHP">
           Ring of Vitality [5,000GP]</button>
@@ -100,7 +109,7 @@ function App() {
       </div></div>
       <div id="B">
         <h1>Gameplay</h1>
-        <button onClick={() => setGold((gold) => gold + (goldPerClick))}>
+        <button onClick={() => setGold((gold) => gold + (goldPerClick) + (1000000))& setplayerCurrentHP((playerCurrentHP) => playerCurrentHP - 50)}>
           Enemy Placeholder
         </button>
         <p>Enemy HP : {enemyHP}</p>
@@ -112,7 +121,7 @@ function App() {
 
 export default App
 
-//start screen with char creator, race and class influence min value of stats, stats influence  maxhp, startgold, startgoldperclick, dmg, etc
+//start screen with char creator, race and ccharacter influence min value of stats, stats influence  maxhp, startgold, startgoldperclick, dmg, etc
 //level influences stats
 // d20 dice roll for stats simulated with math.random, if value of stat is below minval reroll that one?
 // values of stats stored in array?
@@ -124,10 +133,12 @@ export default App
 //xp bar and damage and health bar, link health % to % fill of progress bar
 //xp and gold or just 1 universl currency?
 //when xp reaches new lvl => auto all stat increase or player given skill points to choose stat increse
-//pause button?
+//pause button? menu save game?
 //add occasonal random multichoice text ecounters after enemy death using dialog boxes or similar
 // css start screen is doors or cullis that opens with animation to gamecreen after startscreen fades
 //enemies have difefrent animations?
 //boss battles?
 //dmg animated in numbrs on screen?
 //toggalable animations and options in seperate pop up menu using dialog
+// character selector using card animation css, characters add to certain stats??
+//savegame and loadgame buttons?
