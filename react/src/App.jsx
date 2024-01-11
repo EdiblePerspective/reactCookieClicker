@@ -24,8 +24,28 @@ function App() {
   const [pArmour, setPArmour] = useState(0)
   const [mRings, setMRings] = useState(0)
   const [bombs, setBombs] = useState(0)
+  const [tarotButtClick, setTarotButtClick]=useState(false)
   return (
     <>
+    <div id="startScreen">
+      <h1 className='startTitle'>Choose Your Origin</h1>
+      <div id='tarotWrapWrap'>
+        <div id='tarotWrap'>
+          <div   className={`tarot${(tarotButtClick)===true ? " tarotTransA":""}`}>
+            <button onClick={()=>{setTarotButtClick(tarotButtClick=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+10DMG +100MaxHP":null}></button>
+          </div>
+          <div  className={`tarot${(tarotButtClick)===true ? " tarotTransB":""}`}>
+            <button onClick={()=>{setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+250GP +3GP/Click":null}></button>
+          </div>
+          <div  className={`tarot${(tarotButtClick)===true ? " tarotTransC":""}`} >
+            <button onClick={()=>{setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+10DMG +3GP/Click":null}></button>
+          </div>
+          <div  className={`tarot${(tarotButtClick)===true ? " tarotTransD":""}`} >
+            <button onClick={()=>{setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+250GP +100MaxHP":null}></button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="gameScreen">
       <div id="C">
       <h1>Portrait</h1>
@@ -56,7 +76,7 @@ function App() {
           <p>Atom Bombs: {bombs}</p>
         </div>
       </div>
-      <div className='card'>
+      <div className='cardShop'>
         <h1 className='title'>Shop</h1>
         
         <div id="A">
@@ -96,21 +116,43 @@ function App() {
           & setGold((gold) => gold - (1000))
           & setAxes((axes) => axes + (1)): null}}>
           Shiny Axe [1,000GP]</button>
-        <button className="storeButt" data-title="+10,000 MaxHP">
+        <button className="storeButt" data-title="+10,000 MaxHP" onClick={() => {gold>=5000 ?
+          setplayerMaxHP((playerMaxHP) => playerMaxHP + (10000)) 
+          & setGold((gold) => gold - (5000))
+          & setVRings((vRings) => vRings + (1)): null}}>
           Ring of Vitality [5,000GP]</button>
-        <button className="storeButt" data-title="+500GP/s +3,000Dmg">
+        <button className="storeButt" data-title="+500GP/s +3,000Dmg" onClick={() => {gold>=10000 ?
+          setDmg((Dmg) => Dmg + (3000)) 
+          & setGoldPerSec((goldPerSec) => goldPerSec + (500)) 
+          & setGold((gold) => gold - (10000))
+          & setGuns((guns) => guns + (1)): null}}>
           Machine Gun [10,000GP]</button>
-        <button className="storeButt" data-title="+100,000 MaxHP">
+        <button className="storeButt" data-title="+100,000 MaxHP" onClick={() => {gold>=50000 ?
+          setplayerMaxHP((playerMaxHP) => playerMaxHP + (100000)) 
+          & setGold((gold) => gold - (50000))
+          & setPArmour((pArmour) => pArmour + (1)): null}}>
           Power-Armour [50,000GP]</button>
-        <button className="storeButt" data-title="X2 GP/s">
+        <button className="storeButt" data-title="X2 GP/s" onClick={() => {gold>=500000 ?
+          setGoldPerSec((goldPerSec) => goldPerSec * (2)) 
+          & setGold((gold) => gold - (500000))
+          & setMRings((mRings) => mRings + (1)): null}}>
           Ring of Midas [500,000GP]</button>
-        <button className="storeButt" data-title="+1,000,000 Dmg">
+        <button className="storeButt" data-title="+1,000,000 Dmg" onClick={() => {gold>=1000000 ?
+          setDmg((Dmg) => Dmg + (1000000)) 
+          & setGold((gold) => gold - (1000000))
+          & setBombs((bombs) => bombs + (1)): null}}>
           Atom Bomb [1,000,000GP]</button>
       </div></div>
       <div id="B">
         <h1>Gameplay</h1>
-        <button onClick={() => setGold((gold) => gold + (goldPerClick) + (1000000))& setplayerCurrentHP((playerCurrentHP) => playerCurrentHP - 50)}>
+        <button onClick={() => setGold((gold) => gold + (goldPerClick))}>
           Enemy Placeholder
+        </button>
+        <button onClick={()=>null}>
+          Save Game
+        </button>
+        <button onClick={()=>null}>
+          Load Game
         </button>
         <p>Enemy HP : {enemyHP}</p>
       </div>
@@ -121,7 +163,7 @@ function App() {
 
 export default App
 
-//start screen with char creator, race and ccharacter influence min value of stats, stats influence  maxhp, startgold, startgoldperclick, dmg, etc
+//start screen with char creator, race and ccharacter influence min value of stats, stats influence  maxhp, startgold, startgoldperclick, dmg, negatives 1 for 1 big bonus etc
 //level influences stats
 // d20 dice roll for stats simulated with math.random, if value of stat is below minval reroll that one?
 // values of stats stored in array?
@@ -142,3 +184,10 @@ export default App
 //toggalable animations and options in seperate pop up menu using dialog
 // character selector using card animation css, characters add to certain stats??
 //savegame and loadgame buttons?
+//make stat section a grid with each stat in a box
+//wiz= +damage+gold/click
+//hermit = +maxhp +damage
+//emperor= +gold/click +starting gold
+// priestess= +maxhp +starting gold
+
+//+ (1000000))& setplayerCurrentHP((playerCurrentHP) => playerCurrentHP - 50)
