@@ -185,6 +185,21 @@ button.fill-div {
   box-shadow: 0px 0px 10px 10px goldenrod;
   border-radius: 2vmin;
 }
+.tarotTransA>button[data-title]:hover::after {
+  content: attr(data-title);
+  color: goldenrod;
+  position: relative;
+  background-color: rgba(00,00,00,0.7);
+  z-index: 1;
+  border: gold ridge 3px;
+  margin: auto;
+  font-family: 'pixel','Times New Roman', Times, serif;
+  font-size: medium;
+  top: 65%;
+  width: 100%;
+  white-space: pre;
+  text-align: center;
+}
 .tarotTransB{
   transform: translateX(-70%) rotate(0deg) !important;
 }
@@ -197,6 +212,21 @@ button.fill-div {
   border: ridge black 4px;
   box-shadow: 0px 0px 10px 10px goldenrod;
   border-radius: 2vmin;
+}
+.tarotTransB>button[data-title]:hover::after {
+  content: attr(data-title);
+  color: goldenrod;
+  position: relative;
+  background-color: rgba(00,00,00,0.7);
+  z-index: 1;
+  border: gold ridge 3px;
+  margin: auto;
+  font-family: 'pixel','Times New Roman', Times, serif;
+  font-size: medium;
+  top: 65%;
+  width: 100%;
+  white-space: pre;
+  text-align: center;
 }
 .tarotTransC{
   transform: translateX(-210%) rotate(0deg) !important;
@@ -212,6 +242,21 @@ button.fill-div {
   box-shadow: 0px 0px 10px 10px goldenrod;
   border-radius: 2vmin;
 }
+.tarotTransC>button[data-title]:hover::after {
+  content: attr(data-title);
+  color: goldenrod;
+  position: relative;
+  background-color: rgba(00,00,00,0.7);
+  z-index: 1;
+  border: gold ridge 3px;
+  margin: auto;
+  font-family: 'pixel','Times New Roman', Times, serif;
+  font-size: medium;
+  top: 65%;
+  width: 100%;
+  white-space: pre;
+  text-align: center;
+}
 .tarotTransD{
   transform: translateX(70%) rotate(0deg) !important;
 }
@@ -220,10 +265,24 @@ button.fill-div {
 }
 .tarotTransD>button:hover{
   background: none !important;
-  opacity:0.7;
   transition: all  cubic-bezier(0.5, 0.5, 0.25, 0.95) !important;
   border: ridge black 4px;
   box-shadow: 0px 0px 10px 10px goldenrod;
   border-radius: 2vmin;
+}
+.tarotTransD>button[data-title]:hover::after {
+  content: attr(data-title);
+  color: goldenrod;
+  position: relative;
+  background-color: rgba(00,00,00,0.7);
+  z-index: 1;
+  border: gold ridge 3px;
+  margin: auto;
+  font-family: 'pixel','Times New Roman', Times, serif;
+  font-size: medium;
+  top: 65%;
+  width: 100%;
+  white-space: pre;
+  text-align: center;
 }
 

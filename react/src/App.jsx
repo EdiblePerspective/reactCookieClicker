@@ -25,6 +25,7 @@ function App() {
   const [mRings, setMRings] = useState(0)
   const [bombs, setBombs] = useState(0)
   const [tarotButtClick, setTarotButtClick]=useState(false)
+  const [charSelect, setCharSelect]=useState(0) // 1=Hermit 2=Emperor 3=Magician 4=Priestess
   return (
     <>
     <div id="startScreen">
@@ -32,16 +33,16 @@ function App() {
       <div id='tarotWrapWrap'>
         <div id='tarotWrap'>
           <div   className={`tarot${(tarotButtClick)===true ? " tarotTransA":""}`}>
-            <button onClick={()=>{setTarotButtClick(tarotButtClick=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+10DMG +100MaxHP":null}></button>
+            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>1 )& console.log("1") :null & setTarotButtClick(tarotButtClick=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+10 DMG +100 MaxHP":null}></button>
           </div>
           <div  className={`tarot${(tarotButtClick)===true ? " tarotTransB":""}`}>
-            <button onClick={()=>{setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+250GP +3GP/Click":null}></button>
+            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>2 )& console.log("2") :null & setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+250 GP +3 GP/Click":null}></button>
           </div>
           <div  className={`tarot${(tarotButtClick)===true ? " tarotTransC":""}`} >
-            <button onClick={()=>{setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+10DMG +3GP/Click":null}></button>
+            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>3 )& console.log("3") :null & setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+10 DMG +3 GP/Click":null}></button>
           </div>
           <div  className={`tarot${(tarotButtClick)===true ? " tarotTransD":""}`} >
-            <button onClick={()=>{setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+250GP +100MaxHP":null}></button>
+            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>4 )& console.log("4") :null & setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+250 GP +100 MaxHP":null}></button>
           </div>
         </div>
       </div>
@@ -163,31 +164,25 @@ function App() {
 
 export default App
 
-//start screen with char creator, race and ccharacter influence min value of stats, stats influence  maxhp, startgold, startgoldperclick, dmg, negatives 1 for 1 big bonus etc
+
+//todo//
+
+
 //level influences stats
 // d20 dice roll for stats simulated with math.random, if value of stat is below minval reroll that one?
 // values of stats stored in array?
 //health bars and enemys
 //basic enemys do no damage and click to do damage
 //later enemies deal damage to playerchar
-//shop items foir armor magicitems weapons etc.
-//stats influence health, damage, dam/sec, ac, starting damage etc
 //xp bar and damage and health bar, link health % to % fill of progress bar
-//xp and gold or just 1 universl currency?
 //when xp reaches new lvl => auto all stat increase or player given skill points to choose stat increse
-//pause button? menu save game?
+//pause button?
 //add occasonal random multichoice text ecounters after enemy death using dialog boxes or similar
-// css start screen is doors or cullis that opens with animation to gamecreen after startscreen fades
 //enemies have difefrent animations?
 //boss battles?
 //dmg animated in numbrs on screen?
 //toggalable animations and options in seperate pop up menu using dialog
-// character selector using card animation css, characters add to certain stats??
-//savegame and loadgame buttons?
 //make stat section a grid with each stat in a box
-//wiz= +damage+gold/click
-//hermit = +maxhp +damage
-//emperor= +gold/click +starting gold
-// priestess= +maxhp +starting gold
+
 
 //+ (1000000))& setplayerCurrentHP((playerCurrentHP) => playerCurrentHP - 50)
