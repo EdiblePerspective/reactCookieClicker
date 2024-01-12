@@ -29,7 +29,17 @@ body{
 .title{
   margin: auto;
   font-size: small;
-  background-color: chartreuse;
+  background-color:rgba(204, 30, 30, 0.4);
+  background-size: contain;
+  width: 100%;
+  height:100%;
+  text-align: center;
+  text-shadow:
+  0.07em 0 black,
+  0 0.07em black,
+  -0.07em 0 black,
+  0 -0.07em gold;
+  color: goldenrod;
 }
 .startTitle{
   margin: none;
@@ -48,6 +58,7 @@ body{
   border: 5px solid black;
   display: grid;
   grid-template-rows: 20% 80%;
+  color: goldenrod;
 }
 .cardShop{
   border: 5px solid black;
@@ -55,34 +66,68 @@ body{
   grid-template-rows: 10% 90%;
 }
 #stats{
-  display: flex;
-  flex-flow: row wrap  ;
-  justify-content: space-evenly;
-  background-color: red;
+  display: grid;
+  grid-template-columns: repeat(8,12.5%) ;
+  grid-template-rows: repeat(3,33%);
+  background-image: none;
+  background-size: cover;
+  background-repeat:repeat;
   height:100%;
   font-size: 8px;
+  align-items: stretch;
+}
+.statGrid{
+  background-color: rgba(0,0,0,0.6);
+  border: 1px gold solid;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  color: goldenrod;
+  background-size: cover;
+  text-shadow:
+  0.07em 0 black,
+  0 0.07em black,
+  -0.07em 0 black,
+  0 -0.07em gold;
+  text-align: center;
 }
 #A{
   display: flex;
   flex-flow: column nowrap;
   height:100%;
-  background-color: aquamarine;
+  background-color: none;
 }
 #B{border: 5px solid black;
   height:100%;
-  background-color: royalblue;}
+  background-size: contain;
+  text-shadow:
+  0.07em 0 black,
+  0 0.07em black,
+  -0.07em 0 black,
+  0 -0.07em gold;
+color: goldenrod;}
 #C{border: 5px solid black;
   height:100%;
   background-color: purple;}
+.storeButt{
+  background-color: rgba(0,0,0, 0.7);
+  color: goldenrod;
+  background-size: cover;
+  text-shadow:
+  0.07em 0 black,
+  0 0.07em black,
+  -0.07em 0 black,
+  0 -0.07em gold;
+}
 
 .storeButt[data-title]:hover::after {
   content: attr(data-title);
-  color: white;
+  color: goldenrod;
   font-weight: 600;
   position: absolute;
   background-color: rgba(00,00,00,1);
   z-index: 1;
-  border: red ridge 3px;
+  border: goldenrod ridge 3px;
   margin: auto;
   font-family: 'pixel','Times New Roman', Times, serif;
   font-size: xx-small;

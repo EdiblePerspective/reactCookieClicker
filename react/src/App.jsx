@@ -26,55 +26,59 @@ function App() {
   const [bombs, setBombs] = useState(0)
   const [tarotButtClick, setTarotButtClick]=useState(false)
   const [charSelect, setCharSelect]=useState(0) // 1=Hermit 2=Emperor 3=Magician 4=Priestess
+  const [showStartScreen, setShowStartScreen]=useState(true)
   return (
     <>
-    <div id="startScreen">
+    {showStartScreen&&<div id="startScreen">
       <h1 className='startTitle'>Choose Your Origin</h1>
       <div id='tarotWrapWrap'>
         <div id='tarotWrap'>
           <div   className={`tarot${(tarotButtClick)===true ? " tarotTransA":""}`}>
-            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>1 )& console.log("1") :null & setTarotButtClick(tarotButtClick=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+10 DMG +100 MaxHP":null}></button>
+            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>1 )& console.log("char1")& setShowStartScreen(showStartScreen=>false) :null & setTarotButtClick(tarotButtClick=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+10 DMG +100 MaxHP":null}></button>
           </div>
           <div  className={`tarot${(tarotButtClick)===true ? " tarotTransB":""}`}>
-            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>2 )& console.log("2") :null & setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+250 GP +3 GP/Click":null}></button>
+            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>2 )& console.log("char2") & setShowStartScreen(showStartScreen=>false) :null & setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+250 GP +3 GP/Click":null}></button>
           </div>
           <div  className={`tarot${(tarotButtClick)===true ? " tarotTransC":""}`} >
-            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>3 )& console.log("3") :null & setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+10 DMG +3 GP/Click":null}></button>
+            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>3 )& console.log("char3") & setShowStartScreen(showStartScreen=>false) :null & setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+10 DMG +3 GP/Click":null}></button>
           </div>
           <div  className={`tarot${(tarotButtClick)===true ? " tarotTransD":""}`} >
-            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>4 )& console.log("4") :null & setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+250 GP +100 MaxHP":null}></button>
+            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>4 )& console.log("char4") & setShowStartScreen(showStartScreen=>false) :null & setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+250 GP +100 MaxHP":null}></button>
           </div>
         </div>
       </div>
-    </div>
-    <div id="gameScreen">
+    </div>}
+    {showStartScreen===false?<div id="gameScreen">
       <div id="C">
       <h1>Portrait</h1>
       </div>
       <div className="card">
         <h1 className='title'>Stats</h1>
         <div id="stats">
-          <p>Current Gold: {gold}</p>
-          <p>Current Exp: {exp}</p>
-          <p>Gold Per Click: {goldPerClick}</p>
-          <p>Gold Per Sec: {goldPerSec}</p>
-          <p>Damage Per Click: {dmg}</p>
-          <p>Player Level: {lvl}</p>
-          <p>Current HP: {playerCurrentHP}</p>
-          <p>Max HP: {playerMaxHP}</p>
-          <p>Enemies Defeated: {enemiesDefeated}</p>
-          <p>Total Store Purchases: {purchases}</p>
-          <p>Wood Clubs: {clubs}</p>
-          <p>Leather Armours: {lArmours}</p>
-          <p>Swords: {swords}</p>
-          <p>Health Potions Purchased: {hPots}</p>
-          <p>Wands of Fireball: {wands}</p>
-          <p>Shiny Axes: {axes}</p>
-          <p>Rings of Vitality: {vRings}</p>
-          <p>Machine Guns: {guns}</p>
-          <p>Power Armours: {pArmour}</p>
-          <p>Rings of Midas: {mRings}</p>
-          <p>Atom Bombs: {bombs}</p>
+          <p className='statGrid'>Current Gold: {gold}</p>
+          <p className='statGrid'>Current Exp: {exp}</p>
+          <p className='statGrid'>Gold Per Click: {goldPerClick}</p>
+          <p className='statGrid'>Gold Per Sec: {goldPerSec}</p>
+          <p className='statGrid'>Damage Per Click: {dmg}</p>
+          <p className='statGrid'>Player Level: {lvl}</p>
+          <p className='statGrid'>Current HP: {playerCurrentHP}</p>
+          <p className='statGrid'>Max HP: {playerMaxHP}</p>
+          <p className='statGrid'>Enemies Defeated: {enemiesDefeated}</p>
+          <p className='statGrid'>Total Store Purchases: {purchases}</p>
+          <p className='statGrid'>Wood Clubs: {clubs}</p>
+          <p className='statGrid'>Leather Armours: {lArmours}</p>
+          <p className='statGrid'>Swords: {swords}</p>
+          <p className='statGrid'>Health Potions Purchased: {hPots}</p>
+          <p className='statGrid'>Wands of Fireball: {wands}</p>
+          <p className='statGrid'>Shiny Axes: {axes}</p>
+          <p className='statGrid'>Rings of Vitality: {vRings}</p>
+          <p className='statGrid'>Machine Guns: {guns}</p>
+          <p className='statGrid'>Power Armours: {pArmour}</p>
+          <p className='statGrid'>Rings of Midas: {mRings}</p>
+          <p className='statGrid'>Atom Bombs: {bombs}</p>
+          <p className='statGrid'>Placeholder</p>
+          <p className='statGrid'>Placeholder</p>
+          <p className='statGrid'>Placeholder</p>
         </div>
       </div>
       <div className='cardShop'>
@@ -157,7 +161,7 @@ function App() {
         </button>
         <p>Enemy HP : {enemyHP}</p>
       </div>
-    </div>
+    </div>:null}
     </>
   )
 }
