@@ -12,7 +12,7 @@ function App() {
   const [lvl, setLvl] = useState(1)
   const [goldPerSec, setGoldPerSec] = useState(0)
   const [enemiesDefeated, setEnemiesDefeated] = useState(0)
-  const [purchases, setPurchases] = useState(0)
+  //const [purchases, setPurchases] = useState(0) deprecated//
   const [clubs, setClubs] = useState(0)
   const [lArmours, setLArmours] = useState(0)
   const [swords, setSwords] = useState(0)
@@ -25,8 +25,13 @@ function App() {
   const [mRings, setMRings] = useState(0)
   const [bombs, setBombs] = useState(0)
   const [tarotButtClick, setTarotButtClick]=useState(false)
-  const [charSelect, setCharSelect]=useState(0) // 1=Hermit 2=Emperor 3=Magician 4=Priestess
+  const [charSelect, setCharSelect]=useState(0) // 1=Hermit 2=Emperor 3=Magician 4=Priestess//
   const [showStartScreen, setShowStartScreen]=useState(true)
+  useEffect(() => {const goldInterval = setInterval(() => 
+    {setGold((gold) => gold + (goldPerSec>100?Math.round(goldPerSec/10):(goldPerSec>0 ? 1:0)));},goldPerSec>100? 100: 1000/goldPerSec)
+    //browser constraints when trying to run function faster than every 10ms means a limit has to be instated for functionality//
+    return () => {
+      clearInterval(goldInterval);};}, [goldPerSec]);
   return (
     <>
     {showStartScreen&&<div id="startScreen">
@@ -50,21 +55,17 @@ function App() {
     </div>}
     {showStartScreen===false?<div id="gameScreen">
       <div id="C">
-      <h1>Portrait</h1>
+        <div></div>
+        <div></div>
       </div>
       <div className="card">
         <h1 className='title'>Stats</h1>
         <div id="stats">
-          <p className='statGrid'>Current Gold: {gold}</p>
           <p className='statGrid'>Current Exp: {exp}</p>
-          <p className='statGrid'>Gold Per Click: {goldPerClick}</p>
-          <p className='statGrid'>Gold Per Sec: {goldPerSec}</p>
-          <p className='statGrid'>Damage Per Click: {dmg}</p>
           <p className='statGrid'>Player Level: {lvl}</p>
-          <p className='statGrid'>Current HP: {playerCurrentHP}</p>
           <p className='statGrid'>Max HP: {playerMaxHP}</p>
           <p className='statGrid'>Enemies Defeated: {enemiesDefeated}</p>
-          <p className='statGrid'>Total Store Purchases: {purchases}</p>
+          <p className='statGrid'>Total Store Purchases: {clubs+lArmours+swords+hPots+wands+axes+vRings+guns+pArmour+mRings+bombs}</p>
           <p className='statGrid'>Wood Clubs: {clubs}</p>
           <p className='statGrid'>Leather Armours: {lArmours}</p>
           <p className='statGrid'>Swords: {swords}</p>
@@ -76,6 +77,11 @@ function App() {
           <p className='statGrid'>Power Armours: {pArmour}</p>
           <p className='statGrid'>Rings of Midas: {mRings}</p>
           <p className='statGrid'>Atom Bombs: {bombs}</p>
+          <p className='statGrid'>Placeholder</p>
+          <p className='statGrid'>Placeholder</p>
+          <p className='statGrid'>Placeholder</p>
+          <p className='statGrid'>Placeholder</p>
+          <p className='statGrid'>Placeholder</p>
           <p className='statGrid'>Placeholder</p>
           <p className='statGrid'>Placeholder</p>
           <p className='statGrid'>Placeholder</p>
@@ -153,6 +159,11 @@ function App() {
         <button onClick={() => setGold((gold) => gold + (goldPerClick))}>
           Enemy Placeholder
         </button>
+        <p>Current Gold: {gold}</p>
+        <p>Current HP: {playerCurrentHP}</p>
+        <p className='statGrid'>Gold Per Click: {goldPerClick}</p>
+        <p className='statGrid'>Gold Per Sec: {goldPerSec}</p>
+        <p className='statGrid'>Damage Per Click: {dmg}</p>
         <button onClick={()=>null}>
           Save Game
         </button>
@@ -186,7 +197,8 @@ export default App
 //boss battles?
 //dmg animated in numbrs on screen?
 //toggalable animations and options in seperate pop up menu using dialog
-//make stat section a grid with each stat in a box
-
+//game over screen on currentHP reaching 0, with reload button?
+//localstorage only used if you select the same character, otherwise it is not used, maybe still stored though?
+//encounters switch back to tower after occuring, encounters also occur in a randomized order, use math.random?
 
 //+ (1000000))& setplayerCurrentHP((playerCurrentHP) => playerCurrentHP - 50)
