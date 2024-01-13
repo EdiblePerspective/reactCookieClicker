@@ -57,12 +57,15 @@ body{
   -0.07em 0 black,
   0 -0.07em gold;
   color: goldenrod;
+  letter-spacing:2px;
 }
 .shopTitle{
   transform: translateY(-55%);
   border: 0px solid black;
+  letter-spacing:1px;
 }
 .startTitle{
+  letter-spacing:2px;
   margin: none;
   position: absolute;
   text-align: center;
@@ -120,13 +123,17 @@ body{
 }
 #B{border: 5px solid black; /*gameplay*/
   height:100%;
-  background-size: contain;
+  width:100%;
+  background-color: rgba(54, 184, 123, 0.6);
   text-shadow:
   0.07em 0 black,
   0 0.07em black,
   -0.07em 0 black,
   0 -0.07em gold;
-color: goldenrod;}
+  color: goldenrod;
+  display:grid;
+  grid-template: 20% 20% 20%/20% 20% 20%;
+}
 #C{border: 5px solid black; /*portrait*/
   height:100%;
   background-color: none;
@@ -414,4 +421,83 @@ button.fill-div {
   white-space: pre;
   text-align: center;
 }
-
+.enemyOne{
+  background-image: url(./assets/foolEnemy.png);
+  background-size: cover ;
+  aspect-ratio: 4/7;
+  border-radius: 0.5vmin;
+  border: black ridge 2px;
+  box-shadow: 1px 1px 3px 3px black;
+}
+.enemyTwo{
+  background-image: url(./assets/wandPageEnemy.png);
+  background-size: cover ;
+  aspect-ratio: 4/7;
+  border-radius: 0.5vmin;
+  border: black ridge 2px;
+  box-shadow: 1px 1px 3px 3px black;
+}
+.enemyThree{
+  background-image: url(./assets/wandKnightEnemy.png);
+  background-size: cover ;
+  aspect-ratio: 4/7;
+  border-radius: 0.5vmin;
+  border: black ridge 2px;
+  box-shadow: 1px 1px 3px 3px black;
+}
+.enemyFour{
+  background-image: url(./assets/cupQueenEnemy.png);
+  background-size: cover ;
+  aspect-ratio: 4/7;
+  border-radius: 0.5vmin;
+  border: black ridge 2px;
+  box-shadow: 1px 1px 3px 3px black;
+}
+.enemyFive{
+  background-image: url(./assets/hieroEnemy.png);
+  background-size: cover ;
+  aspect-ratio: 4/7;
+  border-radius: 0.5vmin;
+  border: black ridge 2px;
+  box-shadow: 1px 1px 3px 3px black;
+}
+.enemySix{
+  background-image: url(./assets/chariotEnemy.png);
+  background-size: cover ;
+  aspect-ratio: 4/7;
+  border-radius: 0.5vmin;
+  border: black ridge 2px;
+  box-shadow: 1px 1px 3px 3px black;
+}
+.enemySeven{
+  background-image: url(./assets/pentKingEnemy.png);
+  background-size: cover ;
+  aspect-ratio: 4/7;
+  border-radius: 0.5vmin;
+  border: black ridge 2px;
+  box-shadow: 1px 1px 3px 3px black;
+}
+.enemyEight{
+  background-image: url(./assets/swordQueenEnemy.png);
+  background-size: cover ;
+  aspect-ratio: 4/7;
+  border-radius: 0.5vmin;
+  border: black ridge 2px;
+  box-shadow: 1px 1px 3px 3px black;
+}
+.enemyNine{
+  background-image: url(./assets/angelEnemy.png);
+  background-size: cover ;
+  aspect-ratio: 4/7;
+  border-radius: 0.5vmin;
+  border: black ridge 2px;
+  box-shadow: 1px 1px 3px 3px black;
+}
+.enemyTen{
+  background-image: url(./assets/deathEnemy.png);
+  background-size: cover ;
+  aspect-ratio: 4/7;
+  border-radius: 0.5vmin;
+  border: black ridge 2px;
+  box-shadow: 1px 1px 3px 3px black;
+}

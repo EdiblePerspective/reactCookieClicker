@@ -13,6 +13,7 @@ function App() {
   const [goldPerSec, setGoldPerSec] = useState(0)
   const [enemiesDefeated, setEnemiesDefeated] = useState(0)
   const [encounter, setEncounter] = useState("encounterOne")
+  const [enemy, setEnemy] = useState("enemyOne")
   //const [purchases, setPurchases] = useState(0) deprecated//
   const [clubs, setClubs] = useState(0)
   const [lArmours, setLArmours] = useState(0)
@@ -180,7 +181,7 @@ function App() {
       </div></div>
       <div id="B">
         <h1>Gameplay</h1>
-        <button onClick={() => setGold((gold) => gold + (goldPerClick))}>
+        <button className={enemy} onClick={() => setGold((gold) => gold + (goldPerClick))}>
           Enemy Placeholder
         </button>
         <p>Current Gold: {gold}</p>
@@ -225,4 +226,9 @@ export default App
 //localstorage only used if you select the same character, otherwise it is not used, maybe still stored though?
 //encounters switch back to tower after occuring, encounters also occur in a randomized order, use math.random?
 //transitistion animation between enemy cards of card burning up from middle
+//add mediquerys for mobile view
+//add accessibility featurees
+//health bars
+
+
 //+ (1000000))& setplayerCurrentHP((playerCurrentHP) => playerCurrentHP - 50)
