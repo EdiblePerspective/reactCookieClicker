@@ -2,28 +2,33 @@
   font-family: 'pixel';
   src: url('./assets/Pixeled.ttf');
 }
-body::-webkit-scrollbar {
-  display: none; /* for Chrome, Safari, and Opera */
-}
 *{box-sizing: border-box;
   cursor: url('./assets/pxlSword.cur'), progress;}
+
+body::-webkit-scrollbar {display: none;}
 body{
   background-image: url('./assets/table.png') ;
   font-family: 'pixel','Times New Roman', Times, serif;
   font-size: xx-small;
   cursor: url('./assets/pxlSword.cur'), progress;
-  width: 99vw;
-  height: 95vh;
+  width: 100vw;
+  width: 100svw;
+  height: 100vh;
+  height: 100svh;
   background-repeat: no-repeat;
   background-size:cover;
-  -ms-overflow-style: none; /* for Internet Explorer, Edge */
-  scrollbar-width: none; /* for Firefox */
   overflow-y: hidden;
   overflow-x: hidden;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 #gameScreen{
-  width: 99vw;
+  width: 95vw;
+  width: 100svw;
   height: 95vh;
+  height: 100svh;
+  max-width: 100%;
+  max-height: 100%;
   margin: auto;
   display: grid;
   grid-template: 2fr 6fr/2fr 9fr;
@@ -32,11 +37,16 @@ body{
   opacity: 1;
   background-repeat: no-repeat;
   background-size:cover;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 .title{
   margin: auto;
   font-size: small;
-  background-color:rgba(0,0,0, 0.4);
+  background-color:rgba(0,0,0, 0);
   background-size: contain;
   width: 100%;
   height:100%;
@@ -47,6 +57,10 @@ body{
   -0.07em 0 black,
   0 -0.07em gold;
   color: goldenrod;
+}
+.shopTitle{
+  transform: translateY(-55%);
+  border: 0px solid black;
 }
 .startTitle{
   margin: none;
@@ -61,16 +75,16 @@ body{
   0 -0.07em gold;
   color: goldenrod;
 }
-.card{
-  border: 5px solid black;
+.card{ /*stats*/
+  
   display: grid;
   grid-template-rows: 20% 80%;
   color: goldenrod;
 }
 .cardShop{
-  border: 5px solid black;
+  
   display: grid;
-  grid-template-rows: 10% 90%;
+  grid-template-rows: 5% 95%;
 }
 #stats{
   display: grid;
@@ -98,13 +112,13 @@ body{
   0 -0.07em gold;
   text-align: center;
 }
-#A{
+#A{ /*shop*/
   display: flex;
   flex-flow: column nowrap;
   height:100%;
   background-color: none;
 }
-#B{border: 5px solid black;
+#B{border: 5px solid black; /*gameplay*/
   height:100%;
   background-size: contain;
   text-shadow:
@@ -113,29 +127,69 @@ body{
   -0.07em 0 black,
   0 -0.07em gold;
 color: goldenrod;}
-#C{border: 5px solid black;
+#C{border: 5px solid black; /*portrait*/
   height:100%;
-  background-color: black;
+  background-color: none;
+  width: 100%; 
   display: grid;
-  grid-template-columns: 1f 1fr;
+  grid-template-columns: 50% 50%;
 }
-#C:nth-child(1){
-  background-size: contain;
-  background:url(./assets/hermitChar.png);
+.charPortraitOne{
+  background-size: cover;
+  background-image:url(./assets/hermitChar.png);
   background-repeat: no-repeat;
+  max-width: 100%;
+  border: 1px black ridge;
 }
-#C:nth-child(2){
-  background-size: contain;
-  background:url(./assets/tower.png);
+.encounterOne{
+  background-size: cover;
+  background-image:url(./assets/tower.png);
   background-repeat: no-repeat;
+  max-width: 100%;
+  border: 1px black ridge;
 }
-.charPortraitTwo{background:url(./assets/empChar.png) !important;}
-.charPortraitThree{background:url(./assets/wizChar.png)!important;}
-.charPortraitThree{background:url(./assets/priestChar.png)!important;}
-.encounterTwo{background:url(./assets/hangedEncounter.png)!important;}
-.encounterThree{background:url(./assets/strengthEncounter.png)!important;}
-.encounterFour{background:url(./assets/moonEncounter.png)!important;}
-.encounterFive{background:url(./assets/wheelEncounter.png)!important;}
+.charPortraitTwo{background:url(./assets/empChar.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  border: 1px black ridge;
+}
+.charPortraitThree{background:url(./assets/wizChar.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  border: 1px black ridge;
+}
+.charPortraitFour{background:url(./assets/priestChar.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  border: 1px black ridge;
+}
+.encounterTwo{background:url(./assets/hangedEncounter.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  border: 1px black ridge;
+}
+.encounterThree{background:url(./assets/strengthEncounter.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  border: 1px black ridge;
+}
+.encounterFour{background:url(./assets/moonEncounter.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  border: 1px black ridge;
+}
+.encounterFive{background:url(./assets/wheelEncounter.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  border: 1px black ridge;
+}
 .storeButt{
   background-color: rgba(0,0,0, 0.7);
   color: goldenrod;

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-
+import { useState, useEffect, useRef } from 'react';
+import music from './assets/music.mp3';
 
 function App() {
   const [gold, setGold] = useState(0)
@@ -12,6 +12,7 @@ function App() {
   const [lvl, setLvl] = useState(1)
   const [goldPerSec, setGoldPerSec] = useState(0)
   const [enemiesDefeated, setEnemiesDefeated] = useState(0)
+  const [encounter, setEncounter] = useState("encounterOne")
   //const [purchases, setPurchases] = useState(0) deprecated//
   const [clubs, setClubs] = useState(0)
   const [lArmours, setLArmours] = useState(0)
@@ -25,38 +26,62 @@ function App() {
   const [mRings, setMRings] = useState(0)
   const [bombs, setBombs] = useState(0)
   const [tarotButtClick, setTarotButtClick]=useState(false)
-  const [charSelect, setCharSelect]=useState(0) // 1=Hermit 2=Emperor 3=Magician 4=Priestess//
+  const [charSelect, setCharSelect]=useState("charPortrait1") // 1=Hermit 2=Emperor 3=Magician 4=Priestess//
   const [showStartScreen, setShowStartScreen]=useState(true)
   useEffect(() => {const goldInterval = setInterval(() => 
     {setGold((gold) => gold + (goldPerSec>100?Math.round(goldPerSec/10):(goldPerSec>0 ? 1:0)));},goldPerSec>100? 100: 1000/goldPerSec)
     //browser constraints when trying to run function faster than every 10ms means a limit has to be instated for functionality//
     return () => {
       clearInterval(goldInterval);};}, [goldPerSec]);
+  function play(){new Audio(music).loop=true; new Audio(music).play() };
   return (
     <>
+    <audio id='playMusic' src={music} loop preload='auto'></audio>
     {showStartScreen&&<div id="startScreen">
       <h1 className='startTitle'>Choose Your Origin</h1>
       <div id='tarotWrapWrap'>
         <div id='tarotWrap'>
           <div   className={`tarot${(tarotButtClick)===true ? " tarotTransA":""}`}>
-            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>1 )& console.log("char1")& setShowStartScreen(showStartScreen=>false) :null & setTarotButtClick(tarotButtClick=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+10 DMG +100 MaxHP":null}></button>
+            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>"charPortraitOne")
+            & setplayerMaxHP((playerMaxHP) => playerMaxHP + (100)) 
+            & setplayerCurrentHP((playerCurrentHP) => playerCurrentHP + (100))
+            &setDmg((dmg) => dmg + (10)) 
+            & setShowStartScreen(showStartScreen=>false) :null 
+            & setTarotButtClick(tarotButtClick=>true);playMusic.play()}} className='fill-div' 
+            data-title={(tarotButtClick)===true ? "+10 DMG +100 MaxHP":null}></button>
           </div>
           <div  className={`tarot${(tarotButtClick)===true ? " tarotTransB":""}`}>
-            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>2 )& console.log("char2") & setShowStartScreen(showStartScreen=>false) :null & setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+250 GP +3 GP/Click":null}></button>
+            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>"charPortraitTwo")
+            & setGoldPerClick((goldPerClick) => goldPerClick + (3))
+            & setGold((gold) => gold + (250)) 
+            & setShowStartScreen(showStartScreen=>false) :null 
+            & setTarotButtClick((tarotButtClick)=>true);playMusic.play()}} className='fill-div' 
+            data-title={(tarotButtClick)===true ? "+250 GP +3 GP/Click":null}></button>
           </div>
           <div  className={`tarot${(tarotButtClick)===true ? " tarotTransC":""}`} >
-            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>3 )& console.log("char3") & setShowStartScreen(showStartScreen=>false) :null & setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+10 DMG +3 GP/Click":null}></button>
+            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>"charPortraitThree")
+            & setGoldPerClick((goldPerClick) => goldPerClick + (3))
+            &setDmg((dmg) => dmg + (10)) 
+            & setShowStartScreen(showStartScreen=>false) :null 
+            & setTarotButtClick((tarotButtClick)=>true);playMusic.play()}} className='fill-div' 
+            data-title={(tarotButtClick)===true ? "+10 DMG +3 GP/Click":null}></button>
           </div>
           <div  className={`tarot${(tarotButtClick)===true ? " tarotTransD":""}`} >
-            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>4 )& console.log("char4") & setShowStartScreen(showStartScreen=>false) :null & setTarotButtClick((tarotButtClick)=>true)}} className='fill-div' data-title={(tarotButtClick)===true ? "+250 GP +100 MaxHP":null}></button>
+            <button onClick={()=>{tarotButtClick===true? setCharSelect(charSelect=>"charPortraitFour" )
+            & setGold((gold) => gold + (250)) 
+            & setplayerMaxHP((playerMaxHP) => playerMaxHP + (100)) 
+            & setplayerCurrentHP((playerCurrentHP) => playerCurrentHP + (100))
+            & setShowStartScreen(showStartScreen=>false) :null 
+            & setTarotButtClick((tarotButtClick)=>true);playMusic.play()}} className='fill-div' 
+            data-title={(tarotButtClick)===true ? "+250 GP +100 MaxHP":null}></button>
           </div>
         </div>
       </div>
     </div>}
     {showStartScreen===false?<div id="gameScreen">
       <div id="C">
-        <div></div>
-        <div></div>
+        <div className={charSelect}></div>
+        <div className={encounter}></div>
       </div>
       <div className="card">
         <h1 className='title'>Stats</h1>
@@ -88,8 +113,7 @@ function App() {
         </div>
       </div>
       <div className='cardShop'>
-        <h1 className='title'>Shop</h1>
-        
+        <h1 className='title shopTitle'>Shop</h1>
         <div id="A">
         <button className="storeButt" data-title="+1GP/s +1Dmg" onClick={() => {gold>=15 ?
           setDmg((Dmg) => Dmg + (1)) 
@@ -161,10 +185,10 @@ function App() {
         </button>
         <p>Current Gold: {gold}</p>
         <p>Current HP: {playerCurrentHP}</p>
-        <p className='statGrid'>Gold Per Click: {goldPerClick}</p>
-        <p className='statGrid'>Gold Per Sec: {goldPerSec}</p>
-        <p className='statGrid'>Damage Per Click: {dmg}</p>
-        <button onClick={()=>null}>
+        <p>Gold Per Click: {goldPerClick}</p>
+        <p>Gold Per Sec: {goldPerSec}</p>
+        <p>Damage Per Click: {dmg}</p>
+        <button onClick={null}>
           Save Game
         </button>
         <button onClick={()=>null}>
@@ -200,5 +224,5 @@ export default App
 //game over screen on currentHP reaching 0, with reload button?
 //localstorage only used if you select the same character, otherwise it is not used, maybe still stored though?
 //encounters switch back to tower after occuring, encounters also occur in a randomized order, use math.random?
-
+//transitistion animation between enemy cards of card burning up from middle
 //+ (1000000))& setplayerCurrentHP((playerCurrentHP) => playerCurrentHP - 50)
