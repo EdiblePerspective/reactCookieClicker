@@ -124,15 +124,17 @@ body{
 #B{border: 5px solid black; /*gameplay*/
   height:100%;
   width:100%;
-  background-color: rgba(54, 184, 123, 0.6);
+  background-color: rgba(00, 00, 00, 0.3);
   text-shadow:
   0.07em 0 black,
   0 0.07em black,
   -0.07em 0 black,
   0 -0.07em gold;
   color: goldenrod;
-  display:grid;
-  grid-template: 20% 20% 20%/20% 20% 20%;
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row nowrap;
+  align-items: center;
 }
 #C{border: 5px solid black; /*portrait*/
   height:100%;
@@ -428,6 +430,8 @@ button.fill-div {
   border-radius: 0.5vmin;
   border: black ridge 2px;
   box-shadow: 1px 1px 3px 3px black;
+  height:80%;
+
 }
 .enemyTwo{
   background-image: url(./assets/wandPageEnemy.png);
@@ -436,6 +440,7 @@ button.fill-div {
   border-radius: 0.5vmin;
   border: black ridge 2px;
   box-shadow: 1px 1px 3px 3px black;
+  height:80%;
 }
 .enemyThree{
   background-image: url(./assets/wandKnightEnemy.png);
@@ -444,6 +449,7 @@ button.fill-div {
   border-radius: 0.5vmin;
   border: black ridge 2px;
   box-shadow: 1px 1px 3px 3px black;
+  height:80%;
 }
 .enemyFour{
   background-image: url(./assets/cupQueenEnemy.png);
@@ -452,6 +458,7 @@ button.fill-div {
   border-radius: 0.5vmin;
   border: black ridge 2px;
   box-shadow: 1px 1px 3px 3px black;
+  height:80%;
 }
 .enemyFive{
   background-image: url(./assets/hieroEnemy.png);
@@ -460,6 +467,7 @@ button.fill-div {
   border-radius: 0.5vmin;
   border: black ridge 2px;
   box-shadow: 1px 1px 3px 3px black;
+  height:80%;
 }
 .enemySix{
   background-image: url(./assets/chariotEnemy.png);
@@ -468,6 +476,7 @@ button.fill-div {
   border-radius: 0.5vmin;
   border: black ridge 2px;
   box-shadow: 1px 1px 3px 3px black;
+  height:80%;
 }
 .enemySeven{
   background-image: url(./assets/pentKingEnemy.png);
@@ -476,6 +485,7 @@ button.fill-div {
   border-radius: 0.5vmin;
   border: black ridge 2px;
   box-shadow: 1px 1px 3px 3px black;
+  height:80%;
 }
 .enemyEight{
   background-image: url(./assets/swordQueenEnemy.png);
@@ -484,6 +494,7 @@ button.fill-div {
   border-radius: 0.5vmin;
   border: black ridge 2px;
   box-shadow: 1px 1px 3px 3px black;
+  height:80%;
 }
 .enemyNine{
   background-image: url(./assets/angelEnemy.png);
@@ -492,6 +503,7 @@ button.fill-div {
   border-radius: 0.5vmin;
   border: black ridge 2px;
   box-shadow: 1px 1px 3px 3px black;
+  height:80%;
 }
 .enemyTen{
   background-image: url(./assets/deathEnemy.png);
@@ -500,4 +512,17 @@ button.fill-div {
   border-radius: 0.5vmin;
   border: black ridge 2px;
   box-shadow: 1px 1px 3px 3px black;
+  height:80%;
+}
+.encounterScreen{
+  width: 100vw;
+  width: 100svw;
+  height: 100vh;
+  height: 100svh;
+    margin: auto;
+    z-index: 1000000;
+    background-color: rgba(0,0,0, 0.2);
+    position: absolute;
+    color: goldenrod;
+    backdrop-filter: blur(10px);
 }

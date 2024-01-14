@@ -1,19 +1,23 @@
 import { useState, useEffect, useRef } from 'react';
 import music from './assets/music.mp3';
-
+import ProgressBar from "./ProgressBar.jsx";
 function App() {
   const [gold, setGold] = useState(0)
   const [goldPerClick, setGoldPerClick] = useState(1)
-  const [exp, setEXP] = useState(0)
+  //const [exp, setEXP] = useState(0) deprecated//
   const [dmg, setDmg] = useState(1)
-  const [enemyHP, setEnemyHP] = useState(1)
+  const [enemyHP, setEnemyHP] = useState(100)
+  const [enemyDmg, setEnemyDmg] = useState(1)
   const [playerMaxHP, setplayerMaxHP] = useState(100)
   const [playerCurrentHP, setplayerCurrentHP] = useState(100)
-  const [lvl, setLvl] = useState(1)
+  //const [lvl, setLvl] = useState(1) deprecated//
   const [goldPerSec, setGoldPerSec] = useState(0)
   const [enemiesDefeated, setEnemiesDefeated] = useState(0)
   const [encounter, setEncounter] = useState("encounterOne")
+  const [modalEncounter,setModalEncounter] = useState("")
   const [enemy, setEnemy] = useState("enemyOne")
+  const enemies=[// to demonstrate use of arrays and mapping//
+    {enemyHP: 100, enemyDamage: 1, id: 0},]
   //const [purchases, setPurchases] = useState(0) deprecated//
   const [clubs, setClubs] = useState(0)
   const [lArmours, setLArmours] = useState(0)
@@ -34,7 +38,8 @@ function App() {
     //browser constraints when trying to run function faster than every 10ms means a limit has to be instated for functionality//
     return () => {
       clearInterval(goldInterval);};}, [goldPerSec]);
-  function play(){new Audio(music).loop=true; new Audio(music).play() };
+  function play(){new Audio(music).loop=true; new Audio(music).play();
+    if (new Audio(music).currentTime>=150){new Audio(music).currentTime=0}};
   return (
     <>
     <audio id='playMusic' src={music} loop preload='auto'></audio>
@@ -87,8 +92,8 @@ function App() {
       <div className="card">
         <h1 className='title'>Stats</h1>
         <div id="stats">
-          <p className='statGrid'>Current Exp: {exp}</p>
-          <p className='statGrid'>Player Level: {lvl}</p>
+        <p className='statGrid'>Placeholder</p>
+        <p className='statGrid'>Placeholder</p>
           <p className='statGrid'>Max HP: {playerMaxHP}</p>
           <p className='statGrid'>Enemies Defeated: {enemiesDefeated}</p>
           <p className='statGrid'>Total Store Purchases: {clubs+lArmours+swords+hPots+wands+axes+vRings+guns+pArmour+mRings+bombs}</p>
@@ -180,23 +185,83 @@ function App() {
           Atom Bomb [1,000,000GP]</button>
       </div></div>
       <div id="B">
-        <h1>Gameplay</h1>
-        <button className={enemy} onClick={() => setGold((gold) => gold + (goldPerClick))}>
-          Enemy Placeholder
-        </button>
-        <p>Current Gold: {gold}</p>
-        <p>Current HP: {playerCurrentHP}</p>
+        <div>
+        <h3>Player HP: {playerCurrentHP}</h3>
+        <ProgressBar bgcolor='#7d0729' completed={Math.round(((playerCurrentHP/playerMaxHP)*100))}/>
+        <h2>Gold: {gold}</h2>
         <p>Gold Per Click: {goldPerClick}</p>
         <p>Gold Per Sec: {goldPerSec}</p>
-        <p>Damage Per Click: {dmg}</p>
-        <button onClick={null}>
-          Save Game
+        <p>Player Damage: {dmg}</p>
+        </div>
+        <button className={enemy} 
+        onClick={() => setGold((gold) => gold + (goldPerClick))
+        & setEnemyHP((enemyHP)=>enemyHP-(dmg))
+        & setplayerCurrentHP((playerCurrentHP)=>playerCurrentHP-(enemyDmg))
+        & (playerCurrentHP<=enemyDmg?setModalEncounter((modalEncounter)=>"gameOver"):null)
+        & (enemyHP<=dmg?
+  (enemiesDefeated==0?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
+    & setEnemy((enemy)=>"enemyTwo") &setEnemyHP((enemyHP)=>500)&setEnemyDmg((enemyDmg)=>5)
+  :(enemiesDefeated==1?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
+    & setEnemy((enemy)=>"enemyThree") &setEnemyHP((enemyHP)=>1000)&setEnemyDmg((enemyDmg)=>10)
+  :(enemiesDefeated==2?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
+    & setEnemy((enemy)=>"enemyFour") &setEnemyHP((enemyHP)=>5000)&setEnemyDmg((enemyDmg)=>50)
+  :(enemiesDefeated==3?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
+    & setEnemy((enemy)=>"enemyFive") &setEnemyHP((enemyHP)=>10000)&setEnemyDmg((enemyDmg)=>100)
+  :(enemiesDefeated==4?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
+    & setEnemy((enemy)=>"enemySix") &setEnemyHP((enemyHP)=>50000)&setEnemyDmg((enemyDmg)=>500)
+  :(enemiesDefeated==5?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
+    & setEnemy((enemy)=>"enemySeven") &setEnemyHP((enemyHP)=>100000)&setEnemyDmg((enemyDmg)=>1000)
+  :(enemiesDefeated==6?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
+    & setEnemy((enemy)=>"enemyEight") &setEnemyHP((enemyHP)=>1000000)&setEnemyDmg((enemyDmg)=>5000)
+  :(enemiesDefeated==7?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
+    & setEnemy((enemy)=>"enemyNine") &setEnemyHP((enemyHP)=>10000000)&setEnemyDmg((enemyDmg)=>10000)
+  :(enemiesDefeated==8?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
+    & setEnemy((enemy)=>"enemyTen") &setEnemyHP((enemyHP)=>100000000)&setEnemyDmg((enemyDmg)=>100000)
+    :setModalEncounter((modalEncounter)=>"gameWin")))))))))):null)}>
         </button>
-        <button onClick={()=>null}>
-          Load Game
-        </button>
-        <p>Enemy HP : {enemyHP}</p>
+        {enemies.map((enemiesArray) => (<div key={enemiesArray.id}> 
+        <h3>Enemy HP: {enemyHP}</h3>
+        <ProgressBar bgcolor='#66923d' completed=
+        {Math.round((enemyHP/(enemy==="enemyOne"? enemiesArray.enemyHP
+        :(enemy==="enemyTwo"?enemiesArray.enemyHP*5
+        :(enemy==="enemyThree"?enemiesArray.enemyHP*10
+        :(enemy==="enemyFour"?enemiesArray.enemyHP*50
+        :(enemy==="enemyFive"?enemiesArray.enemyHP*100
+        :(enemy==="enemySix"?enemiesArray.enemyHP*500
+        :(enemy==="enemySeven"?enemiesArray.enemyHP*1000
+        :(enemy==="enemyEight"?enemiesArray.enemyHP*10000
+        :(enemy==="enemyNine"?enemiesArray.enemyHP*100000
+        :(enemy==="enemyTen"?enemiesArray.enemyHP*1000000:null))))))))))*100))}/>
+        <p>Enemy DMG: {enemy==="enemyOne"? enemiesArray.enemyDamage
+        :(enemy==="enemyTwo"?enemiesArray.enemyDamage*5
+        :(enemy==="enemyThree"?enemiesArray.enemyDamage*10
+        :(enemy==="enemyFour"?enemiesArray.enemyDamage*50
+        :(enemy==="enemyFive"?enemiesArray.enemyDamage*100
+        :(enemy==="enemySix"?enemiesArray.enemyDamage*500
+        :(enemy==="enemySeven"?enemiesArray.enemyDamage*1000
+        :(enemy==="enemyEight"?enemiesArray.enemyDamage*5000
+        :(enemy==="enemyNine"?enemiesArray.enemyDamage*10000
+        :(enemy==="enemyTen"?enemiesArray.enemyDamage*100000:null)))))))))}</p>
+        </div>))}
       </div>
+    </div>:null}
+    {modalEncounter=="gameOver"?<div className='encounterScreen'>
+
+    </div>:null}
+    {modalEncounter=="gameWin"?<div className='encounterScreen'>
+
+    </div>:null}
+    {encounter=="encounterTwo"?<div className='encounterScreen'>
+
+    </div>:null}
+    {encounter=="encounterThree"?<div className='encounterScreen'>
+
+    </div>:null}
+    {encounter=="encounterFour"?<div className='encounterScreen'>
+
+    </div>:null}
+    {encounter=="encounterFive"?<div className='encounterScreen'>
+
     </div>:null}
     </>
   )
@@ -207,15 +272,6 @@ export default App
 
 //todo//
 
-
-//level influences stats
-// d20 dice roll for stats simulated with math.random, if value of stat is below minval reroll that one?
-// values of stats stored in array?
-//health bars and enemys
-//basic enemys do no damage and click to do damage
-//later enemies deal damage to playerchar
-//xp bar and damage and health bar, link health % to % fill of progress bar
-//when xp reaches new lvl => auto all stat increase or player given skill points to choose stat increse
 //pause button?
 //add occasonal random multichoice text ecounters after enemy death using dialog boxes or similar
 //enemies have difefrent animations?
@@ -229,6 +285,4 @@ export default App
 //add mediquerys for mobile view
 //add accessibility featurees
 //health bars
-
-
-//+ (1000000))& setplayerCurrentHP((playerCurrentHP) => playerCurrentHP - 50)
+//add game over screen and win screen
