@@ -34,6 +34,7 @@ function App() {
   const [tarotButtClick, setTarotButtClick]=useState(false)
   const [charSelect, setCharSelect]=useState("charPortrait1") // 1=Hermit 2=Emperor 3=Magician 4=Priestess//
   const [showStartScreen, setShowStartScreen]=useState(true)
+  function devGold(){setGold((gold)=>gold+10000000)};//dev tool only no cheating! >:(   //
   const wheelOfFortune=Math.floor(Math.random() * 10)+1;
   useEffect(() => {const goldInterval = setInterval(() => 
     {setGold((gold) => gold + (goldPerSec>100?Math.round(goldPerSec/10):(goldPerSec>0 ? 1:0)));},goldPerSec>100? 100: 1000/goldPerSec)
@@ -248,6 +249,7 @@ function App() {
       {modalEncounter=="gameOver"?<div className='encounterScreen'>
         <h1>You Died</h1>
         <p>Your quest has ended in failure, perhaps you will succeed in another life...</p>
+        <button className='encounterButton' onClick={()=>location.reload()}>Restart</button>
         </div>:null}
       {modalEncounter=="gameWin"?<div className='encounterScreen'>
         <h1>You Win</h1>
@@ -314,16 +316,12 @@ export default App
 //todo//
 
 //pause button?
-//add occasonal random multichoice text ecounters after enemy death using dialog boxes or similar
-//enemies have difefrent animations?
-//boss battles?
-//dmg animated in numbrs on screen?
+//enemies have difefrent animations
+//dmg animated in numbrs on screen
 //toggalable animations and options in seperate pop up menu using dialog
-//game over screen on currentHP reaching 0, with reload button?
-//localstorage only used if you select the same character, otherwise it is not used, maybe still stored though?
-//encounters switch back to tower after occuring, encounters also occur in a randomized order, use math.random?
+//localstorage only used if you select the same character, otherwise it is not used, maybe still stored though??
 //transitistion animation between enemy cards of card burning up from middle
-//add mediquerys for mobile view
+//add mediquerys for mobile view etc
 //add accessibility featurees
-//health bars
-//add game over screen and win screen
+//animation for onclick enemy
+
