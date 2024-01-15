@@ -30,9 +30,11 @@ function App() {
   const [pArmour, setPArmour] = useState(0)
   const [mRings, setMRings] = useState(0)
   const [bombs, setBombs] = useState(0)
+  const [encounterButtClick, setEncountertButtClick]=useState(0)
   const [tarotButtClick, setTarotButtClick]=useState(false)
   const [charSelect, setCharSelect]=useState("charPortrait1") // 1=Hermit 2=Emperor 3=Magician 4=Priestess//
   const [showStartScreen, setShowStartScreen]=useState(true)
+  const wheelOfFortune=Math.floor(Math.random() * 10)+1;
   useEffect(() => {const goldInterval = setInterval(() => 
     {setGold((gold) => gold + (goldPerSec>100?Math.round(goldPerSec/10):(goldPerSec>0 ? 1:0)));},goldPerSec>100? 100: 1000/goldPerSec)
     //browser constraints when trying to run function faster than every 10ms means a limit has to be instated for functionality//
@@ -202,21 +204,21 @@ function App() {
   (enemiesDefeated==0?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
     & setEnemy((enemy)=>"enemyTwo") &setEnemyHP((enemyHP)=>500)&setEnemyDmg((enemyDmg)=>5)
   :(enemiesDefeated==1?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
-    & setEnemy((enemy)=>"enemyThree") &setEnemyHP((enemyHP)=>1000)&setEnemyDmg((enemyDmg)=>10)
+    & setEnemy((enemy)=>"enemyThree") &setEnemyHP((enemyHP)=>1000)&setEnemyDmg((enemyDmg)=>10)&setEncounter((encounter)=>"encounterTwo")
   :(enemiesDefeated==2?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
     & setEnemy((enemy)=>"enemyFour") &setEnemyHP((enemyHP)=>5000)&setEnemyDmg((enemyDmg)=>50)
   :(enemiesDefeated==3?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
-    & setEnemy((enemy)=>"enemyFive") &setEnemyHP((enemyHP)=>10000)&setEnemyDmg((enemyDmg)=>100)
+    & setEnemy((enemy)=>"enemyFive") &setEnemyHP((enemyHP)=>10000)&setEnemyDmg((enemyDmg)=>100)&setEncounter((encounter)=>"encounterThree")
   :(enemiesDefeated==4?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
     & setEnemy((enemy)=>"enemySix") &setEnemyHP((enemyHP)=>50000)&setEnemyDmg((enemyDmg)=>500)
   :(enemiesDefeated==5?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
     & setEnemy((enemy)=>"enemySeven") &setEnemyHP((enemyHP)=>100000)&setEnemyDmg((enemyDmg)=>1000)
   :(enemiesDefeated==6?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
-    & setEnemy((enemy)=>"enemyEight") &setEnemyHP((enemyHP)=>1000000)&setEnemyDmg((enemyDmg)=>5000)
+    & setEnemy((enemy)=>"enemyEight") &setEnemyHP((enemyHP)=>1000000)&setEnemyDmg((enemyDmg)=>5000)&setEncounter((encounter)=>"encounterFour")
   :(enemiesDefeated==7?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
     & setEnemy((enemy)=>"enemyNine") &setEnemyHP((enemyHP)=>10000000)&setEnemyDmg((enemyDmg)=>10000)
   :(enemiesDefeated==8?setEnemiesDefeated((enemiesDefeated)=>enemiesDefeated+1)
-    & setEnemy((enemy)=>"enemyTen") &setEnemyHP((enemyHP)=>100000000)&setEnemyDmg((enemyDmg)=>100000)
+    & setEnemy((enemy)=>"enemyTen") &setEnemyHP((enemyHP)=>100000000)&setEnemyDmg((enemyDmg)=>100000)&setEncounter((encounter)=>"encounterFive")
     :setModalEncounter((modalEncounter)=>"gameWin")))))))))):null)}>
         </button>
         {enemies.map((enemiesArray) => (<div key={enemiesArray.id}> 
@@ -243,24 +245,63 @@ function App() {
         :(enemy==="enemyNine"?enemiesArray.enemyDamage*10000
         :(enemy==="enemyTen"?enemiesArray.enemyDamage*100000:null)))))))))}</p>
         </div>))}
+      {modalEncounter=="gameOver"?<div className='encounterScreen'>
+        <h1>You Died</h1>
+        <p>Your quest has ended in failure, perhaps you will succeed in another life...</p>
+        </div>:null}
+      {modalEncounter=="gameWin"?<div className='encounterScreen'>
+        <h1>You Win</h1>
+        <p>Death itself lays battered and broken before you. The tower holds no more challenge for one such as yourself, a slayer of mortality: the ultimate hero. All that remains is to bask in your glory.</p>
+      </div>:null}
+      {encounter=="encounterTwo"?<div className='encounterScreen'>
+        <h1>Strength</h1>
+        <h3>After a hard fought battle your opponent finally lays slain on the tower floor. You steel your will and exit the antechamber, heading ever upwards towards the tower's inevitable top. As you march ,however, an out of place noise pricks your ears...panting? Your turn towards the sound only to see a friendly-looking dog trot towards you, tail a-wagging.</h3>
+        <button className='encounterButt' data-title="+250MaxHP +250HP" onClick={() =>(setplayerMaxHP((playerMaxHP)=>playerMaxHP+250)&setplayerCurrentHP((playerCurrentHP)=>playerCurrentHP+250)&setEncounter((encounter)=>"encounterOne"))}>Pet the Pup</button>
+        <button className='encounterButt' data-title="+150DMG" onClick={() =>(setDmg((dmg)=>dmg+150)&setEncounter((encounter)=>"encounterOne"))}>Enlist the Furry Friend on your Quest</button>
+        </div>:null}
+      {encounter=="encounterThree"?<div className='encounterScreen'>
+        <h1>Fate</h1>
+        <h3>Before you stands a comically large wheel-shaped contraption with a lever attached. Neon-lit text flashes above: 'Test your Fortune'.</h3> 
+        <h3>A tattered piece of paper is pinned to the wall adjacent, it reads: </h3>
+        <ul>
+          <li>1. +10,000 MaxHP</li>
+          <li>2. +1000 DMG</li>
+          <li>3. +1 Gold</li>
+          <li>4. +250 GP/s</li>
+          <li>5. Lose all Gold</li>
+          <li>6. +500 Gold per/click</li>
+          <li>7. +10,000 Gold</li>
+          <li>8. +100,000 Gold</li>
+          <li>9. Jackpot! +1,000,000 Gold</li>
+          <li>10. Instant Death</li>
+        </ul>
+        <button className='encounterButt'  
+        onClick={() =>((wheelOfFortune==1?setplayerMaxHP((playerMaxHP)=>playerMaxHP+10000)
+          :(wheelOfFortune==2?setDmg((dmg)=>dmg+1000)
+          :(wheelOfFortune==3?setGold((gold)=>gold+1)
+          :(wheelOfFortune==4?setGoldPerSec((goldPerSec)=>goldPerSec+250)
+          :(wheelOfFortune==5?setGold((gold)=>gold*0)
+          :(wheelOfFortune==6?setGoldPerClick((goldPerClick)=>goldPerClick+500)
+          :(wheelOfFortune==7?setGold((gold)=>gold+10000)
+          :(wheelOfFortune==8?setGold((gold)=>gold+100000)
+          :(wheelOfFortune==9?setGold((gold)=>gold+1000000)
+          :(wheelOfFortune==10?setModalEncounter((modalEncounter)=>"gameOver"):null))))))))))
+          &setEncounter((encounter)=>"encounterOne"))}>SPIN THE WHEEL!!!</button>
+        <button className='encounterButt' data-title="+1MaxHP" onClick={() =>(setplayerCurrentHP((playerMaxHP)=>playerMaxHP+1)&setEncounter((encounter)=>"encounterOne"))}>Leave</button>
+      </div>:null}
+      {encounter=="encounterFour"?<div className='encounterScreen'>
+      <h1>Blessing</h1>
+        <h3>As you gather your bearings after your last battle you notice an almost imperceptible white glow in the corner of your field-of-view. It starts to grow... and grow... and grow; before you know it your entire vision is engulfed by a blinding white light. Out of nowhere a thunderous voice calls out to you: "Champion, know that thine efforts have not gone unnoticed. I grant thee mine blessing, that thy might succeed in thy quest." And suddenly there is no light nor voice, you are standing exactly where you were before, nothing has changed... and yet, you feel...</h3>
+        <button className='encounterButt' data-title="+5,000DMG" onClick={() =>(setDmg((dmg)=>dmg+5000)&setEncounter((encounter)=>"encounterOne"))}>Stronger</button>
+        <button className='encounterButt' data-title="+15,000MaxHP" onClick={() =>(setplayerMaxHP((playerMaxHP)=>playerMaxHP+15000)&setEncounter((encounter)=>"encounterOne"))}>Faster</button>
+      </div>:null}
+      {encounter=="encounterFive"?<div className='encounterScreen'>
+      <h1>Omen</h1>
+        <h3>At the end of a hallway your eyes set upon a strange visage; a stench of rot hangs around the corpse of an adventurer strung upside down from a rope tied to a wooden pole. To your surprise the body's fetid mouth moves, in a grating voice it announces "Know that beyond here lies the inevitable fate of all things. Turn back, for no mortal strength will prevail you now."</h3>
+        <button className='encounterButt' data-title="+100,000DMG" onClick={() =>(setDmg((dmg)=>dmg+100000)&setEncounter((encounter)=>"encounterOne"))}>Press Forward</button>
+        <button className='encounterButt' data-title="+500,000MaxHP" onClick={() =>(setplayerMaxHP((playerMaxHP)=>playerMaxHP+500000)&setEncounter((encounter)=>"encounterOne"))}>Take time to Prepare</button>
+      </div>:null}
       </div>
-    </div>:null}
-    {modalEncounter=="gameOver"?<div className='encounterScreen'>
-
-    </div>:null}
-    {modalEncounter=="gameWin"?<div className='encounterScreen'>
-
-    </div>:null}
-    {encounter=="encounterTwo"?<div className='encounterScreen'>
-
-    </div>:null}
-    {encounter=="encounterThree"?<div className='encounterScreen'>
-
-    </div>:null}
-    {encounter=="encounterFour"?<div className='encounterScreen'>
-
-    </div>:null}
-    {encounter=="encounterFive"?<div className='encounterScreen'>
 
     </div>:null}
     </>

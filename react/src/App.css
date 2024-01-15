@@ -175,13 +175,13 @@ body{
   max-width: 100%;
   border: 1px black ridge;
 }
-.encounterTwo{background:url(./assets/hangedEncounter.png);
+.encounterTwo{background:url(./assets/strengthEncounter.png);
   background-size: cover;
   background-repeat: no-repeat;
   max-width: 100%;
   border: 1px black ridge;
 }
-.encounterThree{background:url(./assets/strengthEncounter.png);
+.encounterThree{background:url(./assets/wheelEncounter.png);
   background-size: cover;
   background-repeat: no-repeat;
   max-width: 100%;
@@ -193,7 +193,7 @@ body{
   max-width: 100%;
   border: 1px black ridge;
 }
-.encounterFive{background:url(./assets/wheelEncounter.png);
+.encounterFive{background:url(./assets/hangedEncounter.png);
   background-size: cover;
   background-repeat: no-repeat;
   max-width: 100%;
@@ -515,14 +515,50 @@ button.fill-div {
   height:80%;
 }
 .encounterScreen{
-  width: 100vw;
-  width: 100svw;
-  height: 100vh;
-  height: 100svh;
-    margin: auto;
-    z-index: 1000000;
-    background-color: rgba(0,0,0, 0.2);
-    position: absolute;
-    color: goldenrod;
-    backdrop-filter: blur(10px);
+  width: 82%;
+  height: 65%;
+  margin: auto;
+  z-index: 1000000;
+  background-color: rgba(0,0,0, 0.8);
+  position: fixed;
+  color: goldenrod;
+  text-align: center;
+  text-shadow:
+  0.07em 0 black,
+  0 0.07em black,
+  -0.07em 0 black,
+  0 -0.07em gold;
+}
+.encounterButt{
+  background-color: rgba(218,165,32, 0.7);
+  color: black;
+  background-size: cover;
+  text-shadow:
+  0.07em 0 black,
+  0 0.07em black,
+  -0.07em 0 black,
+  0 -0.07em gold;
+  border: black 1px solid;
+  margin: 2rem;
+  padding: auto;
+}
+.encounterButt:hover{
+  box-shadow: 0px 0px 5px 5px goldenrod;
+}
+
+.encounterButt[data-title]:hover::after {
+  content: attr(data-title);
+  color: goldenrod;
+  font-weight: 600;
+  position: absolute;
+  background-color: rgba(00,00,00,1);
+  z-index: inherit;
+  border: goldenrod ridge 3px;
+  margin-top: 0.7rem;
+  font-family: 'pixel','Times New Roman', Times, serif;
+  font-size: xx-small;
+  text-align: center;
+  white-space: pre;
+  display: flex;
+  justify-content: space-between;
 }
