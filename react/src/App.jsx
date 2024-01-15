@@ -34,7 +34,6 @@ function App() {
   const [tarotButtClick, setTarotButtClick]=useState(false)
   const [charSelect, setCharSelect]=useState("charPortrait1") // 1=Hermit 2=Emperor 3=Magician 4=Priestess//
   const [showStartScreen, setShowStartScreen]=useState(true)
-  function devGold(){setGold((gold)=>gold+10000000)};//dev tool only no cheating! >:(   //
   const wheelOfFortune=Math.floor(Math.random() * 10)+1;
   useEffect(() => {const goldInterval = setInterval(() => 
     {setGold((gold) => gold + (goldPerSec>100?Math.round(goldPerSec/10):(goldPerSec>0 ? 1:0)));},goldPerSec>100? 100: 1000/goldPerSec)
@@ -95,8 +94,6 @@ function App() {
       <div className="card">
         <h1 className='title'>Stats</h1>
         <div id="stats">
-        <p className='statGrid'>Placeholder</p>
-        <p className='statGrid'>Placeholder</p>
           <p className='statGrid'>Max HP: {playerMaxHP}</p>
           <p className='statGrid'>Enemies Defeated: {enemiesDefeated}</p>
           <p className='statGrid'>Total Store Purchases: {clubs+lArmours+swords+hPots+wands+axes+vRings+guns+pArmour+mRings+bombs}</p>
@@ -111,6 +108,8 @@ function App() {
           <p className='statGrid'>Power Armours: {pArmour}</p>
           <p className='statGrid'>Rings of Midas: {mRings}</p>
           <p className='statGrid'>Atom Bombs: {bombs}</p>
+          <p className='statGrid'>Placeholder</p>
+          <p className='statGrid'>Placeholder</p>
           <p className='statGrid'>Placeholder</p>
           <p className='statGrid'>Placeholder</p>
           <p className='statGrid'>Placeholder</p>
@@ -249,11 +248,11 @@ function App() {
       {modalEncounter=="gameOver"?<div className='encounterScreen'>
         <h1>You Died</h1>
         <p>Your quest has ended in failure, perhaps you will succeed in another life...</p>
-        <button className='encounterButton' onClick={()=>location.reload()}>Restart</button>
+        <button className='encounterButt' onClick={()=>location.reload()}>Restart</button>
         </div>:null}
       {modalEncounter=="gameWin"?<div className='encounterScreen'>
         <h1>You Win</h1>
-        <p>Death itself lays battered and broken before you. The tower holds no more challenge for one such as yourself, a slayer of mortality: the ultimate hero. All that remains is to bask in your glory.</p>
+        <h2>Death itself lays battered and broken before you. The tower holds no more challenge for one such as yourself, a slayer of mortality: the ultimate hero. All that remains is to bask in your glory.</h2>
       </div>:null}
       {encounter=="encounterTwo"?<div className='encounterScreen'>
         <h1>Strength</h1>
@@ -264,19 +263,19 @@ function App() {
       {encounter=="encounterThree"?<div className='encounterScreen'>
         <h1>Fate</h1>
         <h3>Before you stands a comically large wheel-shaped contraption with a lever attached. Neon-lit text flashes above: 'Test your Fortune'.</h3> 
-        <h3>A tattered piece of paper is pinned to the wall adjacent, it reads: </h3>
-        <ul>
-          <li>1. +10,000 MaxHP</li>
-          <li>2. +1000 DMG</li>
-          <li>3. +1 Gold</li>
-          <li>4. +250 GP/s</li>
-          <li>5. Lose all Gold</li>
-          <li>6. +500 Gold per/click</li>
-          <li>7. +10,000 Gold</li>
-          <li>8. +100,000 Gold</li>
-          <li>9. Jackpot! +1,000,000 Gold</li>
-          <li>10. Instant Death</li>
-        </ul>
+        <h4>A tattered piece of paper is pinned to the wall adjacent, it reads: </h4>
+        <ol>
+          <li> +10,000 MaxHP</li>
+          <li> +1000 DMG</li>
+          <li> +1 Gold</li>
+          <li> +250 GP/s</li>
+          <li> Lose all Gold</li>
+          <li> +500 Gold per/click</li>
+          <li> +10,000 Gold</li>
+          <li> +100,000 Gold</li>
+          <li> Jackpot! +1,000,000 Gold</li>
+          <li> Instant Death</li>
+        </ol>
         <button className='encounterButt'  
         onClick={() =>((wheelOfFortune==1?setplayerMaxHP((playerMaxHP)=>playerMaxHP+10000)
           :(wheelOfFortune==2?setDmg((dmg)=>dmg+1000)
